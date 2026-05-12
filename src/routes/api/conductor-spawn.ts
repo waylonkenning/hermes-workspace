@@ -282,7 +282,7 @@ export const Route = createFileRoute('/api/conductor-spawn')({
             prompt: null,
             missionId,
             sessionKey: result.sessionKey ?? null,
-            sessionKeyPrefix: null,
+            sessionKeyPrefix: (result as Record<string, unknown>).sessionKeyPrefix ?? null,
             jobId: missionId,
             jobName: result.name ?? missionName,
             runId: null,
