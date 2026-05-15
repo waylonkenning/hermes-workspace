@@ -1578,7 +1578,7 @@ export function useConductorGateway() {
         })
       }
 
-      if (prefix && orchestratorKey) {
+      if (prefix) {
         // Async: resolve the placeholder to the real session key once it exists.
         const resolveOrchestrator = async () => {
           for (let attempt = 0; attempt < 30; attempt += 1) {
