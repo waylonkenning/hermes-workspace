@@ -3,6 +3,8 @@ import { createContext, memo, useContext, useId, useMemo, useRef } from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkBreaks from 'remark-breaks'
 import remarkGfm from 'remark-gfm'
+import rehypeRaw from 'rehype-raw'
+import rehypeSanitize from 'rehype-sanitize'
 import { CodeBlock } from './code-block'
 import type { Components } from 'react-markdown'
 import { cn } from '@/lib/utils'
@@ -334,6 +336,41 @@ const INITIAL_COMPONENTS: Partial<Components> = {
   },
 }
 
+// Default sanitize schema — allows common HTML tags safe for chat rendering
+// while blocking scripts, iframes, and other dangerous elements.
+const HTML_SANITIZE_SCHEMA = {
+  tagNames: [
+    'a', 'abbr', 'article', 'b', 'bdi', 'blockquote', 'br', 'caption',
+    'center', 'cite', 'code', 'col', 'colgroup', 'data', 'dd', 'del',
+    'details', 'dfn', 'div', 'dl', 'dt', 'em', 'figcaption', 'figure',
+    'footer', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'header', 'hgroup',
+    'hr', 'i', 'img', 'ins', 'kbd', 'li', 'main', 'mark', 'nav', 'ol',
+    'p', 'pre', 'q', 'rp', 'rt', 'ruby', 's', 'samp', 'section', 'small',
+    'span', 'strong', 'sub', 'summary', 'sup', 'table', 'tbody', 'td',
+    'tfoot', 'th', 'thead', 'time', 'tr', 'u', 'ul', 'var', 'wbr',
+  ],
+  attributes: {
+    '*': ['className', 'class', 'id', 'style', 'title', 'lang', 'dir'],
+    a: ['href', 'target', 'rel', 'download'],
+    img: ['src', 'alt', 'width', 'height', 'loading'],
+    td: ['colspan', 'rowspan', 'headers'],
+    th: ['colspan', 'rowspan', 'headers', 'scope'],
+    col: ['span'],
+    colgroup: ['span'],
+    ol: ['start', 'type'],
+    li: ['value'],
+    details: ['open'],
+    time: ['datetime'],
+    data: ['value'],
+    del: ['datetime'],
+    ins: ['datetime'],
+  },
+  protocols: {
+    a: { href: ['http', 'https', 'mailto', 'tel'] },
+    img: { src: ['http', 'https', 'data'] },
+  },
+}
+
 const MemoizedMarkdownBlock = memo(
   function MarkdownBlock({
     content,
@@ -345,6 +382,7 @@ const MemoizedMarkdownBlock = memo(
     return (
       <ReactMarkdown
         remarkPlugins={[remarkGfm, remarkBreaks]}
+        rehypePlugins={[rehypeRaw, [rehypeSanitize, HTML_SANITIZE_SCHEMA]]}
         components={components}
       >
         {content}
