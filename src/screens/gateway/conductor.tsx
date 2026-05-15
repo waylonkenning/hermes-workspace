@@ -1132,7 +1132,7 @@ export function Conductor() {
 
       return (
         <div className="flex min-h-dvh flex-col overflow-y-auto bg-[var(--theme-bg)] text-[var(--theme-text)]" style={THEME_STYLE}>
-          <main className="mx-auto flex min-h-0 w-full max-w-[720px] flex-1 flex-col px-4 py-4 pb-[calc(var(--tabbar-h,80px)+1rem)] md:px-6 md:py-8">
+          <main className="mx-auto flex min-h-0 w-full max-w-[720px] flex-1 flex-col px-4 py-4 pb-4 md:pb-[calc(var(--tabbar-h,80px)+1rem)] md:px-6 md:py-8">
             <div className="space-y-6">
               <button
                 type="button"
@@ -1293,16 +1293,16 @@ export function Conductor() {
 
     return (
       <div className="flex min-h-dvh flex-col overflow-y-auto bg-[var(--theme-bg)] text-[var(--theme-text)]" style={THEME_STYLE}>
-        <main className="mx-auto flex min-h-0 w-full max-w-[760px] flex-1 flex-col items-stretch justify-center px-4 py-4 pb-[calc(var(--tabbar-h,80px)+1rem)] md:px-6 md:py-6">
+        <main className="mx-auto flex min-h-0 w-full max-w-[760px] flex-1 flex-col items-stretch justify-start px-4 py-4 pb-4 md:pb-[calc(var(--tabbar-h,80px)+1rem)] md:justify-center md:px-6 md:py-6">
           <div className="w-full space-y-6">
-            <div className="space-y-2 text-center">
+            <div className="space-y-2 md:text-center">
               <div className="flex items-center gap-2">
-                <div className="flex-1" />
-                <div className="inline-flex shrink items-center gap-2.5 overflow-hidden rounded-full border border-[var(--theme-border)] bg-[var(--theme-card)] px-5 py-2.5 text-sm font-semibold uppercase tracking-[0.24em] text-[var(--theme-muted)]">
-                  <span className="truncate">Conductor</span>
+                <div className="hidden md:block flex-1" />
+                <div className="hidden md:inline-flex shrink-0 items-center gap-2.5 rounded-full border border-[var(--theme-border)] bg-[var(--theme-card)] px-5 py-2.5 text-sm font-semibold uppercase tracking-[0.24em] text-[var(--theme-muted)]">
+                  <span>Conductor</span>
                   <span className="size-2.5 shrink-0 rounded-full bg-emerald-400" />
                 </div>
-                <div className="flex flex-1 items-center justify-end gap-2">
+                <div className="flex md:flex-1 items-center justify-end gap-2 ml-auto md:ml-0">
                   <WorkflowHelpModal
                     compact
                     eyebrow="Conductor"
@@ -1352,7 +1352,7 @@ export function Conductor() {
               <p className="text-sm text-[var(--theme-muted-2)]">Launch a mission and watch your agent team build it live.</p>
             </div>
 
-            <section className="overflow-hidden rounded-3xl border border-[var(--theme-border)] bg-[var(--theme-card)] shadow-[0_24px_80px_var(--theme-shadow)] md:h-[520px]">
+            <section className="h-[280px] overflow-hidden rounded-3xl border border-[var(--theme-border)] bg-[var(--theme-card)] shadow-[0_24px_80px_var(--theme-shadow)] md:h-[520px]">
               <OfficeView
                 agentRows={homeOfficeRows}
                 missionRunning={homeOfficeRows.some((a) => a.status === 'active')}
@@ -1833,7 +1833,7 @@ export function Conductor() {
   if (phase === 'preview') {
     return (
       <div className="flex min-h-dvh flex-col overflow-y-auto bg-[var(--theme-bg)] text-[var(--theme-text)]" style={THEME_STYLE}>
-        <main className="mx-auto flex min-h-0 w-full max-w-[720px] flex-1 flex-col px-4 py-4 pb-[calc(var(--tabbar-h,80px)+1rem)] md:px-6 md:py-8">
+        <main className="mx-auto flex min-h-0 w-full max-w-[720px] flex-1 flex-col px-4 py-4 pb-4 md:pb-[calc(var(--tabbar-h,80px)+1rem)] md:px-6 md:py-8">
           <div className="space-y-6">
             <div className="text-center">
               <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--theme-accent)]">Mission Decomposition</p>
@@ -1893,7 +1893,7 @@ export function Conductor() {
   if (phase === 'complete') {
     return (
       <div className="flex min-h-dvh flex-col overflow-y-auto bg-[var(--theme-bg)] text-[var(--theme-text)]" style={THEME_STYLE}>
-        <main className="mx-auto flex min-h-0 w-full max-w-[720px] flex-1 flex-col px-4 py-4 pb-[calc(var(--tabbar-h,80px)+1rem)] md:px-6 md:py-8">
+        <main className="mx-auto flex min-h-0 w-full max-w-[720px] flex-1 flex-col px-4 py-4 pb-4 md:pb-[calc(var(--tabbar-h,80px)+1rem)] md:px-6 md:py-8">
           <div className="space-y-6">
             <div className="text-center">
               <div className="inline-flex items-center gap-2 rounded-full border border-[var(--theme-border)] bg-[var(--theme-card)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-[var(--theme-muted)]">
@@ -2227,7 +2227,7 @@ export function Conductor() {
 
   return (
     <div className="flex min-h-dvh flex-col overflow-y-auto bg-[var(--theme-bg)] text-[var(--theme-text)]" style={THEME_STYLE}>
-      <main className="mx-auto flex min-h-0 w-full max-w-[720px] flex-1 flex-col px-4 py-4 pb-[calc(var(--tabbar-h,80px)+1rem)] md:px-6 md:py-8">
+      <main className="mx-auto flex min-h-0 w-full max-w-[720px] flex-1 flex-col px-4 py-4 pb-4 md:pb-[calc(var(--tabbar-h,80px)+1rem)] md:px-6 md:py-8">
         <div className="flex w-full flex-col gap-6">
           <div className="text-center">
             <div className="inline-flex items-center gap-2 rounded-full border border-[var(--theme-border)] bg-[var(--theme-card)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-[var(--theme-muted)]">
