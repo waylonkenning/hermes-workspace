@@ -1293,7 +1293,7 @@ export function Conductor() {
 
     return (
       <div className="flex min-h-dvh flex-col overflow-y-auto bg-[var(--theme-bg)] text-[var(--theme-text)]" style={THEME_STYLE}>
-        <main className="mx-auto flex min-h-0 w-full max-w-[760px] flex-1 flex-col items-stretch justify-start px-4 py-4 pb-4 md:pb-[calc(var(--tabbar-h,80px)+1rem)] md:justify-center md:px-6 md:py-6">
+        <main className="mx-auto flex min-h-0 w-full max-w-[760px] flex-1 flex-col items-stretch justify-start px-4 py-4 pb-4 md:pb-[calc(var(--tabbar-h,80px)+1rem)] md:px-6 md:py-6">
           <div className="w-full space-y-6">
             <div className="space-y-2 md:text-center">
               <div className="flex items-center gap-2">
