@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { json } from '@tanstack/react-start'
+import { ensureSwarmProfileConfig } from '../../server/swarm-profile-config'
 import { execFile } from 'node:child_process'
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { homedir } from 'node:os'
@@ -587,6 +588,7 @@ async function ensureLiveTmuxSession(workerId: string): Promise<{ ok: true; tmux
   }
 
   const profilePath = getProfilePath(workerId)
+  ensureSwarmProfileConfig(profilePath)
   const cwd = resolveWorkerCwd(workerId)
   const hermesBin = resolveHermesBin()
   const launchCommand = buildHermesTmuxLaunchCommand({
