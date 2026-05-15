@@ -1831,10 +1831,10 @@ export function Conductor() {
 
   if (phase === 'preview') {
     return (
-      <div className="flex min-h-dvh flex-col bg-[var(--theme-bg)] text-[var(--theme-text)]" style={THEME_STYLE}>
-        <main className="mx-auto flex min-h-0 w-full max-w-[720px] flex-1 flex-col items-stretch justify-center px-4 py-4 pb-[calc(var(--tabbar-h,80px)+1rem)] md:px-6 md:py-8">
+      <div className="flex min-h-dvh flex-col overflow-y-auto bg-[var(--theme-bg)] text-[var(--theme-text)]" style={THEME_STYLE}>
+        <main className="mx-auto flex min-h-0 w-full max-w-[720px] flex-1 flex-col px-4 py-4 pb-[calc(var(--tabbar-h,80px)+1rem)] md:px-6 md:py-8">
           <div className="space-y-6">
-            <div className="space-y-2 text-center">
+            <div className="text-center">
               <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--theme-accent)]">Mission Decomposition</p>
               <h1 className="text-2xl font-semibold tracking-tight">{conductor.goal}</h1>
               <p className="text-sm text-[var(--theme-muted-2)]">The agent is breaking the mission into workers. Once they spawn, this view flips into the active board.</p>
@@ -1891,7 +1891,7 @@ export function Conductor() {
 
   if (phase === 'complete') {
     return (
-      <div className="flex min-h-dvh flex-col bg-[var(--theme-bg)] text-[var(--theme-text)]" style={THEME_STYLE}>
+      <div className="flex min-h-dvh flex-col overflow-y-auto bg-[var(--theme-bg)] text-[var(--theme-text)]" style={THEME_STYLE}>
         <main className="mx-auto flex min-h-0 w-full max-w-[720px] flex-1 flex-col px-4 py-4 pb-[calc(var(--tabbar-h,80px)+1rem)] md:px-6 md:py-8">
           <div className="space-y-6">
             <div className="text-center">
@@ -2225,8 +2225,8 @@ export function Conductor() {
   }
 
   return (
-    <div className="flex min-h-dvh flex-col bg-[var(--theme-bg)] text-[var(--theme-text)]" style={THEME_STYLE}>
-      <main className="mx-auto flex min-h-0 w-full max-w-[720px] flex-1 flex-col justify-center px-4 py-4 pb-[calc(var(--tabbar-h,80px)+1rem)] md:px-6 md:py-8">
+    <div className="flex min-h-dvh flex-col overflow-y-auto bg-[var(--theme-bg)] text-[var(--theme-text)]" style={THEME_STYLE}>
+      <main className="mx-auto flex min-h-0 w-full max-w-[720px] flex-1 flex-col px-4 py-4 pb-[calc(var(--tabbar-h,80px)+1rem)] md:px-6 md:py-8">
         <div className="flex w-full flex-col gap-6">
           <div className="text-center">
             <div className="inline-flex items-center gap-2 rounded-full border border-[var(--theme-border)] bg-[var(--theme-card)] px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-[var(--theme-muted)]">
@@ -2315,7 +2315,7 @@ export function Conductor() {
               </div>
             </section>
           )}
-          <section className="h-[360px] overflow-hidden rounded-3xl border border-[var(--theme-border)] bg-[var(--theme-card)] shadow-[0_24px_80px_var(--theme-shadow)]">
+          <section className="max-h-[clamp(200px,40vh,360px)] overflow-hidden rounded-3xl border border-[var(--theme-border)] bg-[var(--theme-card)] shadow-[0_24px_80px_var(--theme-shadow)]">
             <OfficeView agentRows={officeAgentRows} missionRunning onViewOutput={() => {}} processType="parallel" companyName="Conductor Office" containerHeight={360} hideHeader />
           </section>
 
