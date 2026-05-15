@@ -1012,6 +1012,8 @@ export function useConductorGateway() {
     },
     enabled: Boolean(missionId) && phase !== 'idle',
     refetchInterval: phase === 'decomposing' || phase === 'running' ? 2_500 : false,
+    retry: Infinity,
+    retryDelay: (attemptIndex: number) => Math.min(2000 * 2 ** attemptIndex, 10_000),
   })
 
   const workers = sessionsQuery.data ?? []
