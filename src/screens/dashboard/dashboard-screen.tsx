@@ -927,7 +927,7 @@ export function DashboardScreen() {
         {/* Action row: hierarchy per Hermes Agent review.
            New Chat is primary (full button + accent), Terminal +
            Skills are secondary, Settings collapses to icon-only. */}
-        <div className="flex w-full flex-wrap items-center justify-end gap-2 lg:max-w-xl">
+        <div className="flex w-full flex-wrap items-center justify-start gap-2 lg:justify-end lg:max-w-xl">
           <button
             type="button"
             onClick={() =>
