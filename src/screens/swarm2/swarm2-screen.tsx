@@ -1492,7 +1492,7 @@ export function Swarm2Screen() {
                 <h1 className="truncate text-base font-semibold text-primary-900">
                   Swarm
                 </h1>
-                <p className="truncate text-xs text-[var(--theme-muted-2)]">
+                <p className="text-xs text-[var(--theme-muted-2)] sm:truncate">
                   {members.length > 0
                     ? `Detected ${members.length} worker${members.length === 1 ? '' : 's'} for planning, routing, reports, and reviewer-gated execution.`
                     : 'Detected Hermes profiles and roster workers for planning, routing, reports, and reviewer-gated execution.'}
@@ -1544,7 +1544,7 @@ export function Swarm2Screen() {
                 ) : null}
               </button>
               {notificationsOpen ? (
-                <div className="absolute right-0 top-12 z-40 w-[min(28rem,calc(100vw-2rem))] rounded-2xl border border-[var(--theme-border)] bg-[var(--theme-card)] p-3 text-left shadow-[0_24px_80px_var(--theme-shadow)]">
+                <div className="absolute left-0 top-12 z-40 w-[min(28rem,calc(100vw-2rem))] rounded-2xl border border-[var(--theme-border)] bg-[var(--theme-card)] p-3 text-left shadow-[0_24px_80px_var(--theme-shadow)] sm:left-auto sm:right-0">
                   <div className="mb-2 flex items-center justify-between gap-3">
                     <div>
                       <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--theme-muted)]">Swarm updates</div>

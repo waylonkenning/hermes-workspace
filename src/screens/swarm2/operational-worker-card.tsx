@@ -359,7 +359,7 @@ export function OperationalWorkerCard({
             {projectBranch || projectName || (hasPreview ? 'preview' : 'main')}
           </span>
         </div>
-        <div className="flex w-full justify-center px-28">
+        <div className="flex w-full justify-center px-16 sm:px-28">
           <h3 className="min-w-0 text-center text-sm font-semibold text-[var(--theme-text)]">
             <span className="inline-flex max-w-full items-center justify-center gap-2">
               {avatarGlyph ? <span>{avatarGlyph}</span> : null}
