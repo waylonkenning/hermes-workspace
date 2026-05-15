@@ -623,7 +623,11 @@ async function ensureLiveTmuxSession(workerId: string): Promise<{ ok: true; tmux
   }
 
   const startupOutput = await captureTmuxPane(tmuxBin, sessionName)
-  if (startupOutput.includes('[Hermes worker exited with status')) {
+  // Match only at the START of a line (after a newline or at pane top) so the
+  // echoed shell command's printf format string doesn't cause a false positive.
+  // The sentinel is on its own line because printf starts with \n.
+  const exitedPattern = /(?:^|\n)\[Hermes worker exited with status/
+  if (exitedPattern.test(startupOutput)) {
     const sanitizedOutput = redactStartupOutput(startupOutput).slice(-4_000)
     const logsDir = join(profilePath, 'logs')
     mkdirSync(logsDir, { recursive: true })
@@ -877,9 +881,14 @@ function runWorker(assignment: AssignmentRequest, timeoutMs: number, roster: Swa
 
     const useWrapper = existsSync(wrapperPath)
     const cmd = useWrapper ? wrapperPath : resolveHermesBin()
+    // CLI stdin delivery: always pass the prompt as both the -q argument AND
+    // via stdin (input: prompt below). The -q argument ensures the wrapper CLI
+    // gets the query; the stdin input covers the raw hermes binary path in case
+    // the wrapper is absent. Both paths produce the same behavior.
+    const baseArgs = ['chat', '-q', prompt, '-Q', '--yolo', '--ignore-rules', '--source', 'swarm-dispatch']
     const args = useWrapper
-      ? ['chat', '-q', '-Q', '--yolo', '--ignore-rules', '--source', 'swarm-dispatch', prompt]
-      : ['chat', '-q', '-Q', '--yolo', '--ignore-rules', '--source', 'swarm-dispatch']
+      ? baseArgs
+      : baseArgs
     const env: NodeJS.ProcessEnv = {
       ...process.env,
       HERMES_HOME: profilePath,
