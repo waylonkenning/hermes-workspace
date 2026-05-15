@@ -164,7 +164,7 @@ export function Swarm2OrchestratorCard({
         )}
       >
         <div className="relative flex flex-col items-center gap-3 text-center">
-          <div className="absolute left-0 top-0 flex shrink-0 items-center gap-1 rounded-xl border border-[var(--theme-border)] bg-[var(--theme-card)] p-1 shadow-sm">
+          <div className="absolute left-0 top-0 flex shrink-0 flex-wrap items-center gap-1 rounded-xl border border-[var(--theme-border)] bg-[var(--theme-card)] p-1 shadow-sm sm:flex-nowrap">
             {([
               ['cards', 'Control'],
               ['kanban', 'Board'],
