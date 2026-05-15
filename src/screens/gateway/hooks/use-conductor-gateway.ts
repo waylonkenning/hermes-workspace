@@ -97,6 +97,7 @@ type ConductorSpawnResponse = {
   jobId?: string | null
   jobName?: string | null
   runId?: string | null
+  assignments?: Array<{ workerId: string; task: string; rationale: string }>
   error?: string
 }
 
@@ -1531,6 +1532,27 @@ export function useConductorGateway() {
             portableStreamAbortRef.current = null
           }
         }
+        return
+      }
+
+      // native-swarm mode: local swarm workers handle the mission, no orchestrator session
+      if (result.mode === 'native-swarm') {
+        const missionId = result.missionId ?? null
+        setMissionId(missionId)
+        setMissionJobId(result.jobId ?? null)
+        setOrchestratorSessionKey(missionId)
+        if (missionId) {
+          setMissionWorkerKeys((current) => {
+            if (current.has(missionId)) return current
+            const next = new Set(current)
+            next.add(missionId)
+            return next
+          })
+        }
+        setPlanText(result.assignments?.length
+          ? `Native swarm mission launched with ${result.assignments.length} workers. Watching for swarm activity...`
+          : 'Native swarm mission launched. Decomposing and spawning workers...')
+        setPhase('running')
         return
       }
 
